@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anand Yogi Fashion Bags</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9963A;
+    --gold-light: #F0D080;
+    --rose: #E8C4C4;
+    --deep: #1A0A2E;
+    --cream: #FDF8F0;
+    --text: #2D1B1B;
+    --muted: #7A6060;
+    --card-bg: #FFFFFF;
+    --shadow: 0 4px 24px rgba(26,10,46,0.10);
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, var(--deep) 0%, #3B1F5E 60%, #7B3F8C 100%);
+    padding: 0 32px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(26,10,46,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+  }
+
+  .logo-area { display: flex; align-items: center; gap: 14px; }
+  .logo-icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .logo-text h1 {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+  }
+  .logo-text p {
+    color: var(--gold-light);
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  nav { display: flex; gap: 6px; }
+  nav button {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.75);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  nav button:hover, nav button.active {
+    background: rgba(201,150,58,0.2);
+    color: var(--gold-light);
+  }
+
+  /* HERO STRIP */
+  .hero-strip {
+    background: linear-gradient(90deg, #F7EDD8 0%, #FDF8F0 50%, #F0E0F0 100%);
+    border-bottom: 2px solid var(--gold-light);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .hero-strip h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--deep);
+    font-weight: 900;
+  }
+  .hero-strip h2 span { color: var(--gold); }
+  .hero-strip p { color: var(--muted); font-size: 0.95rem; margin-top: 4px; }
+
+  .btn-add {
+    background: linear-gradient(135deg, var(--gold), #E8A830);
+    color: var(--deep);
+    border: none;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 16px rgba(201,150,58,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+  }
+  .btn-add:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(201,150,58,0.45); }
+
+  /* SEARCH & FILTER BAR */
+  .toolbar {
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: #fff;
+    border-bottom: 1px solid #EEE;
+  }
+  .search-box {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+  }
+  .search-box input {
+    width: 100%;
+    padding: 10px 16px 10px 40px;
+    border: 1.5px solid #E0D0D0;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text);
+    outline: none;
+    background: var(--cream);
+    transition: border 0.2s;
+  }
+  .search-box input:focus { border-color: var(--gold); }
+  .search-box svg {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    color: var(--muted); pointer-events: none;
+  }
+
+  .filter-btn {
+    padding: 10px 20px;
+    border: 1.5px solid #E0D0D0;
+    border-radius: 50px;
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: #FFF8ED;
+  }
+
+  .stats-row {
+    padding: 14px 40px;
+    display: flex;
+    gap: 24px;
+    background: #FFF;
+    border-bottom: 1px solid #EEE;
+    flex-wrap: wrap;
+  }
+  .stat-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .stat-chip strong { color: var(--deep); font-size: 1.05rem; }
+
+  /* MAIN GRID */
+  .main { padding: 32px 40px; }
+  .empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--muted);
+  }
+  .empty-state .empty-icon { font-size: 64px; margin-bottom: 16px; }
+  .empty-state h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .empty-state p { font-size: 0.95rem; }
+  .empty-state .arrow {
+    margin-top: 24px;
+    font-size: 0.9rem;
+    color: var(--gold);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  /* PRODUCT CARD */
+  .product-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    cursor: pointer;
+  }
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 36px rgba(26,10,46,0.16);
+  }
+
+  .card-img-wrap {
+    width: 100%; height: 220px;
+    background: linear-gradient(135deg, #F5EAF5, #FDF0DD);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .card-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .product-card:hover .card-img-wrap img { transform: scale(1.05); }
+  .card-img-placeholder { font-size: 60px; opacity: 0.5; }
+
+  .card-cat-badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: linear-gradient(135deg, var(--deep), #3B1F5E);
+    color: var(--gold-light);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 50px;
+  }
+
+  .card-actions-overlay {
+    position: absolute;
+    top: 12px; right: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .product-card:hover .card-actions-overlay { opacity: 1; }
+  .card-icon-btn {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    transition: transform 0.15s;
+  }
+  .card-icon-btn:hover { transform: scale(1.1); }
+  .btn-edit { background: #fff; color: var(--deep); box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+  .btn-delete { background: #FEE; color: #C00; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+
+  .card-body { padding: 16px 18px 20px; }
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--deep);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .card-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+  }
+  .card-price sup { font-size: 0.7rem; vertical-align: super; }
+
+  .card-stock {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-weight: 600;
+  }
+  .in-stock { background: #E6F7EC; color: #1A7F3A; }
+  .out-stock { background: #FEE; color: #C00; }
+
+  /* MODAL OVERLAY */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(26,10,46,0.55);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: #fff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 540px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 24px 80px rgba(26,10,46,0.3);
+    transform: translateY(24px);
+    transition: transform 0.3s;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+
+  .modal-header {
+    padding: 24px 28px 16px;
+    border-bottom: 1px solid #F0E8E8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .modal-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--deep);
+    font-weight: 700;
+  }
+  .modal-close {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: #F5F0F0;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: #EEE; }
+
+  .modal-body { padding: 24px 28px; }
+
+  /* FORM */
+  .form-group { margin-bottom: 20px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 7px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid #E8DEDE;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--text);
+    background: var(--cream);
+    outline: none;
+    transition: border 0.2s;
+    appearance: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--gold); background: #fff; }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+
+  /* IMAGE UPLOAD */
+  .img-upload-area {
+    border: 2px dashed #D8C8C8;
+    border-radius: 12px;
+    padding: 28px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #FEFBF7;
+    position: relative;
+    overflow: hidden;
+  }
+  .img-upload-area:hover { border-color: var(--gold); background: #FFF8ED; }
+  .img-upload-area.has-img { border-style: solid; border-color: var(--gold); }
+  .img-upload-area img {
+    max-height: 180px;
+    border-radius: 8px;
+    object-fit: cover;
+    max-width: 100%;
+  }
+  .img-upload-area input[type=file] {
+    position: absolute; inset: 0;
+    opacity: 0; cursor: pointer;
+    width: 100%; height: 100%;
+    border: none;
+    padding: 0;
+    background: none;
+  }
+  .upload-icon { font-size: 38px; margin-bottom: 8px; }
+  .upload-hint { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+  .upload-hint strong { color: var(--gold); }
+
+  .modal-footer {
+    padding: 16px 28px 24px;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+  .btn-cancel {
+    padding: 11px 24px;
+    border: 1.5px solid #E0D0D0;
+    border-radius: 50px;
+    background: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-cancel:hover { border-color: var(--text); color: var(--text); }
+  .btn-save {
+    padding: 11px 32px;
+    background: linear-gradient(135deg, var(--gold), #E8A830);
+    border: none;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--deep);
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(201,150,58,0.35);
+    transition: transform 0.2s;
+  }
+  .btn-save:hover { transform: translateY(-1px); }
+
+  /* VIEW MODAL */
+  .view-modal-img {
+    width: 100%; max-height: 280px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #F5EAF5, #FDF0DD);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+    min-height: 180px;
+  }
+  .view-modal-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+  .view-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    font-weight: 900;
+    margin: 12px 0 8px;
+  }
+  .view-desc { color: var(--muted); line-height: 1.65; font-size: 0.95rem; }
+  .view-meta {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .view-meta-item {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .view-meta-item span { font-size: 0.73rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+  .view-meta-item strong { display: block; font-size: 0.95rem; color: var(--text); margin-top: 2px; }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    background: var(--deep);
+    color: #fff;
+    padding: 13px 22px;
+    border-radius: 12px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    box-shadow: 0 8px 30px rgba(26,10,46,0.3);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.35s cubic-bezier(.34,1.56,.64,1);
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast.success { border-left: 4px solid #4CAF50; }
+  .toast.error { border-left: 4px solid #F44336; }
+
+  /* FOOTER */
+  footer {
+    margin-top: 48px;
+    background: var(--deep);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 20px;
+    font-size: 0.8rem;
+  }
+  footer strong { color: var(--gold-light); }
+
+  @media (max-width: 640px) {
+    .hero-strip { padding: 20px; }
+    .hero-strip h2 { font-size: 1.4rem; }
+    .toolbar, .stats-row, .main { padding-left: 16px; padding-right: 16px; }
+    .form-row { grid-template-columns: 1fr; }
+    nav { display: none; }
+    header { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-area">
+    <div class="logo-icon">🎀</div>
+    <div class="logo-text">
+      <h1>Anand Yogi Fashion Bags</h1>
+      <p>Gifts · Decor · Celebrations</p>
+    </div>
+  </div>
+  <nav>
+    <button class="active" onclick="showSection('catalog')">All Products</button>
+    <button onclick="showSection('birthday')">Birthday</button>
+    <button onclick="showSection('wedding')">Wedding</button>
+  </nav>
+</header>
+
+<div class="hero-strip">
+  <div>
+    <h2>My Product <span>Catalogue</span></h2>
+    <p>Add, edit and manage all your birthday & wedding items</p>
+  </div>
+  <button class="btn-add" onclick="openAddModal()">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+    Add New Product
+  </button>
+</div>
+
+<div class="toolbar">
+  <div class="search-box">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="Search products..." oninput="renderProducts()">
+  </div>
+  <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+  <button class="filter-btn" onclick="setFilter('Birthday Decoration', this)">🎂 Birthday</button>
+  <button class="filter-btn" onclick="setFilter('Wedding Bag', this)">💍 Wedding</button>
+  <button class="filter-btn" onclick="setFilter('Gift Item', this)">🎁 Gifts</button>
+</div>
+
+<div class="stats-row">
+  <div class="stat-chip">📦 Total: <strong id="statTotal">0</strong></div>
+  <div class="stat-chip">🎂 Birthday: <strong id="statBirthday">0</strong></div>
+  <div class="stat-chip">💍 Wedding: <strong id="statWedding">0</strong></div>
+  <div class="stat-chip">🎁 Gifts: <strong id="statGift">0</strong></div>
+</div>
+
+<div class="main" id="mainContent">
+  <div class="empty-state" id="emptyState">
+    <div class="empty-icon">🎀</div>
+    <h3>No Products Yet</h3>
+    <p>Start adding your beautiful birthday decorations and wedding bags!</p>
+    <div class="arrow">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Click "Add New Product" to get started
+    </div>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</div>
+
+<!-- ADD / EDIT MODAL -->
+<div class="modal-overlay" id="formModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modalTitle">Add New Product</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Product Image</label>
+        <div class="img-upload-area" id="uploadArea">
+          <input type="file" id="imageInput" accept="image/*" onchange="handleImageUpload(event)">
+          <div id="uploadPlaceholder">
+            <div class="upload-icon">📸</div>
+            <div class="upload-hint">
+              <strong>Click to upload</strong> your product photo<br>
+              JPG, PNG, WEBP supported
+            </div>
+          </div>
+          <img id="imagePreview" style="display:none;" alt="Preview">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Product Name *</label>
+        <input type="text" id="productName" placeholder="e.g. Rose Gold Birthday Balloon Set">
+      </div>
+
+      <div class="form-group">
+        <label>Category *</label>
+        <select id="productCategory">
+          <option value="">Select category...</option>
+          <option value="Birthday Decoration">🎂 Birthday Decoration</option>
+          <option value="Wedding Bag">💍 Wedding Bag</option>
+          <option value="Gift Item">🎁 Gift Item</option>
+          <option value="Party Supplies">🎉 Party Supplies</option>
+          <option value="Flower Decoration">🌸 Flower Decoration</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Product Description</label>
+        <textarea id="productDesc" placeholder="Describe your product — materials, size, colors, what makes it special..."></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Price (₹) *</label>
+          <input type="number" id="productPrice" placeholder="e.g. 350" min="0">
+        </div>
+        <div class="form-group">
+          <label>Stock Status</label>
+          <select id="productStock">
+            <option value="In Stock">✅ In Stock</option>
+            <option value="Out of Stock">❌ Out of Stock</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" onclick="saveProduct()">Save Product</button>
+    </div>
+  </div>
+</div>
+
+<!-- VIEW MODAL -->
+<div class="modal-overlay" id="viewModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="viewModalTitle">Product Details</h2>
+      <button class="modal-close" onclick="closeViewModal()">✕</button>
+    </div>
+    <div class="modal-body" id="viewModalBody"></div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeViewModal()">Close</button>
+      <button class="btn-save" id="viewEditBtn">Edit Product</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<footer>
+  &copy; 2025 <strong>Anand Yogi Fashion Bags</strong> · Birthday Decorations & Wedding Bags
+</footer>
+
+<script>
+  let products = JSON.parse(localStorage.getItem('ayf_products') || '[]');
+  let editingId = null;
+  let currentFilter = 'all';
+  let currentImageData = null;
+
+  function save() {
+    localStorage.setItem('ayf_products', JSON.stringify(products));
+  }
+
+  function uid() {
+    return Date.now().toString(36) + Math.random().toString(36).slice(2);
+  }
+
+  function catEmoji(cat) {
+    const map = { 'Birthday Decoration':'🎂', 'Wedding Bag':'💍', 'Gift Item':'🎁', 'Party Supplies':'🎉', 'Flower Decoration':'🌸' };
+    return map[cat] || '📦';
+  }
+
+  function renderProducts() {
+    const search = document.getElementById('searchInput').value.toLowerCase();
+    let filtered = products.filter(p => {
+      const matchSearch = p.name.toLowerCase().includes(search) || (p.desc||'').toLowerCase().includes(search);
+      const matchFilter = currentFilter === 'all' || p.category === currentFilter;
+      return matchSearch && matchFilter;
+    });
+
+    const grid = document.getElementById('productsGrid');
+    const empty = document.getElementById('emptyState');
+
+    // Update stats
+    document.getElementById('statTotal').textContent = products.length;
+    document.getElementById('statBirthday').textContent = products.filter(p=>p.category==='Birthday Decoration').length;
+    document.getElementById('statWedding').textContent = products.filter(p=>p.category==='Wedding Bag').length;
+    document.getElementById('statGift').textContent = products.filter(p=>p.category==='Gift Item').length;
+
+    if (filtered.length === 0) {
+      grid.innerHTML = '';
+      empty.style.display = 'block';
+    } else {
+      empty.style.display = 'none';
+      grid.innerHTML = filtered.map(p => `
+        <div class="product-card" onclick="viewProduct('${p.id}')">
+          <div class="card-img-wrap">
+            ${p.image
+              ? `<img src="${p.image}" alt="${p.name}">`
+              : `<div class="card-img-placeholder">${catEmoji(p.category)}</div>`
+            }
+            <span class="card-cat-badge">${p.category || 'Product'}</span>
+            <div class="card-actions-overlay" onclick="event.stopPropagation()">
+              <button class="card-icon-btn btn-edit" title="Edit" onclick="openEditModal('${p.id}')">✏️</button>
+              <button class="card-icon-btn btn-delete" title="Delete" onclick="deleteProduct('${p.id}')">🗑️</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-name">${p.name}</div>
+            <div class="card-desc">${p.desc || 'No description added.'}</div>
+            <div class="card-footer">
+              <div class="card-price"><sup>₹</sup>${Number(p.price).toLocaleString('en-IN')}</div>
+              <span class="card-stock ${p.stock === 'In Stock' ? 'in-stock' : 'out-stock'}">${p.stock}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+
+  function setFilter(cat, btn) {
+    currentFilter = cat;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts();
+  }
+
+  function openAddModal() {
+    editingId = null;
+    currentImageData = null;
+    document.getElementById('modalTitle').textContent = 'Add New Product';
+    document.getElementById('productName').value = '';
+    document.getElementById('productCategory').value = '';
+    document.getElementById('productDesc').value = '';
+    document.getElementById('productPrice').value = '';
+    document.getElementById('productStock').value = 'In Stock';
+    document.getElementById('imagePreview').style.display = 'none';
+    document.getElementById('uploadPlaceholder').style.display = 'block';
+    document.getElementById('uploadArea').classList.remove('has-img');
+    document.getElementById('imageInput').value = '';
+    document.getElementById('formModal').classList.add('open');
+  }
+
+  function openEditModal(id) {
+    const p = products.find(x => x.id === id);
+    if (!p) return;
+    editingId = id;
+    currentImageData = p.image || null;
+    document.getElementById('modalTitle').textContent = 'Edit Product';
+    document.getElementById('productName').value = p.name;
+    document.getElementById('productCategory').value = p.category;
+    document.getElementById('productDesc').value = p.desc || '';
+    document.getElementById('productPrice').value = p.price;
+    document.getElementById('productStock').value = p.stock;
+    if (p.image) {
+      document.getElementById('imagePreview').src = p.image;
+      document.getElementById('imagePreview').style.display = 'block';
+      document.getElementById('uploadPlaceholder').style.display = 'none';
+      document.getElementById('uploadArea').classList.add('has-img');
+    } else {
+      document.getElementById('imagePreview').style.display = 'none';
+      document.getElementById('uploadPlaceholder').style.display = 'block';
+      document.getElementById('uploadArea').classList.remove('has-img');
+    }
+    document.getElementById('formModal').classList.add('open');
+  }
+
+  function closeModal() {
+    document.getElementById('formModal').classList.remove('open');
+  }
+
+  function handleImageUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      currentImageData = ev.target.result;
+      document.getElementById('imagePreview').src = currentImageData;
+      document.getElementById('imagePreview').style.display = 'block';
+      document.getElementById('uploadPlaceholder').style.display = 'none';
+      document.getElementById('uploadArea').classList.add('has-img');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function saveProduct() {
+    const name = document.getElementById('productName').value.trim();
+    const cat = document.getElementById('productCategory').value;
+    const price = document.getElementById('productPrice').value;
+
+    if (!name) { showToast('⚠️ Please enter product name', 'error'); return; }
+    if (!cat) { showToast('⚠️ Please select a category', 'error'); return; }
+    if (!price || isNaN(price) || Number(price) < 0) { showToast('⚠️ Please enter a valid price', 'error'); return; }
+
+    const product = {
+      id: editingId || uid(),
+      name,
+      category: cat,
+      desc: document.getElementById('productDesc').value.trim(),
+      price: Number(price),
+      stock: document.getElementById('productStock').value,
+      image: currentImageData,
+      updatedAt: new Date().toLocaleDateString('en-IN')
+    };
+
+    if (editingId) {
+      const idx = products.findIndex(p => p.id === editingId);
+      products[idx] = product;
+      showToast('✅ Product updated!', 'success');
+    } else {
+      products.unshift(product);
+      showToast('🎉 Product added!', 'success');
+    }
+
+    save();
+    closeModal();
+    renderProducts();
+  }
+
+  function deleteProduct(id) {
+    if (!confirm('Delete this product?')) return;
+    products = products.filter(p => p.id !== id);
+    save();
+    renderProducts();
+    showToast('🗑️ Product deleted', 'success');
+  }
+
+  function viewProduct(id) {
+    const p = products.find(x => x.id === id);
+    if (!p) return;
+    document.getElementById('viewModalTitle').textContent = p.name;
+    document.getElementById('viewModalBody').innerHTML = `
+      <div class="view-modal-img">
+        ${p.image ? `<img src="${p.image}" alt="${p.name}">` : catEmoji(p.category)}
+      </div>
+      <div class="card-cat-badge" style="display:inline-block;margin-bottom:4px;">${catEmoji(p.category)} ${p.category}</div>
+      <div class="view-price">₹${Number(p.price).toLocaleString('en-IN')}</div>
+      <p class="view-desc">${p.desc || 'No description provided.'}</p>
+      <div class="view-meta">
+        <div class="view-meta-item"><span>Stock</span><strong>${p.stock}</strong></div>
+        <div class="view-meta-item"><span>Last Updated</span><strong>${p.updatedAt || '—'}</strong></div>
+      </div>
+    `;
+    document.getElementById('viewEditBtn').onclick = () => { closeViewModal(); openEditModal(id); };
+    document.getElementById('viewModal').classList.add('open');
+  }
+
+  function closeViewModal() {
+    document.getElementById('viewModal').classList.remove('open');
+  }
+
+  function showSection(sec) {
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    if (sec === 'catalog') { setFilter('all', document.querySelector('.filter-btn')); }
+    else if (sec === 'birthday') { setFilter('Birthday Decoration', document.querySelectorAll('.filter-btn')[1]); }
+    else if (sec === 'wedding') { setFilter('Wedding Bag', document.querySelectorAll('.filter-btn')[2]); }
+  }
+
+  let toastTimer;
+  function showToast(msg, type='success') {
+    clearTimeout(toastTimer);
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = `toast ${type} show`;
+    toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  // Close modal on overlay click
+  document.getElementById('formModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  document.getElementById('viewModal').addEventListener('click', function(e) {
+    if (e.target === this) closeViewModal();
+  });
+
+  // Init
+  renderProducts();
+</script>
+</body>
+</html>
