@@ -566,10 +566,10 @@
 
 <header>
   <div class="logo-area">
-    <div class="logo-icon">🎀</div>
+    <div class="logo-icon">??</div>
     <div class="logo-text">
       <h1>Anand Yogi Fashion Bags</h1>
-      <p>Gifts · Decor · Celebrations</p>
+      <p>Gifts � Decor � Celebrations</p>
     </div>
   </div>
   <nav>
@@ -596,21 +596,21 @@
     <input type="text" id="searchInput" placeholder="Search products..." oninput="renderProducts()">
   </div>
   <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
-  <button class="filter-btn" onclick="setFilter('Birthday Decoration', this)">🎂 Birthday</button>
-  <button class="filter-btn" onclick="setFilter('Wedding Bag', this)">💍 Wedding</button>
-  <button class="filter-btn" onclick="setFilter('Gift Item', this)">🎁 Gifts</button>
+  <button class="filter-btn" onclick="setFilter('Birthday Decoration', this)">?? Birthday</button>
+  <button class="filter-btn" onclick="setFilter('Wedding Bag', this)">?? Wedding</button>
+  <button class="filter-btn" onclick="setFilter('Gift Item', this)">?? Gifts</button>
 </div>
 
 <div class="stats-row">
-  <div class="stat-chip">📦 Total: <strong id="statTotal">0</strong></div>
-  <div class="stat-chip">🎂 Birthday: <strong id="statBirthday">0</strong></div>
-  <div class="stat-chip">💍 Wedding: <strong id="statWedding">0</strong></div>
-  <div class="stat-chip">🎁 Gifts: <strong id="statGift">0</strong></div>
+  <div class="stat-chip">?? Total: <strong id="statTotal">0</strong></div>
+  <div class="stat-chip">?? Birthday: <strong id="statBirthday">0</strong></div>
+  <div class="stat-chip">?? Wedding: <strong id="statWedding">0</strong></div>
+  <div class="stat-chip">?? Gifts: <strong id="statGift">0</strong></div>
 </div>
 
 <div class="main" id="mainContent">
   <div class="empty-state" id="emptyState">
-    <div class="empty-icon">🎀</div>
+    <div class="empty-icon">??</div>
     <h3>No Products Yet</h3>
     <p>Start adding your beautiful birthday decorations and wedding bags!</p>
     <div class="arrow">
@@ -626,7 +626,7 @@
   <div class="modal">
     <div class="modal-header">
       <h2 id="modalTitle">Add New Product</h2>
-      <button class="modal-close" onclick="closeModal()">✕</button>
+      <button class="modal-close" onclick="closeModal()">?</button>
     </div>
     <div class="modal-body">
       <div class="form-group">
@@ -634,7 +634,7 @@
         <div class="img-upload-area" id="uploadArea">
           <input type="file" id="imageInput" accept="image/*" onchange="handleImageUpload(event)">
           <div id="uploadPlaceholder">
-            <div class="upload-icon">📸</div>
+            <div class="upload-icon">??</div>
             <div class="upload-hint">
               <strong>Click to upload</strong> your product photo<br>
               JPG, PNG, WEBP supported
@@ -653,29 +653,29 @@
         <label>Category *</label>
         <select id="productCategory">
           <option value="">Select category...</option>
-          <option value="Birthday Decoration">🎂 Birthday Decoration</option>
-          <option value="Wedding Bag">💍 Wedding Bag</option>
-          <option value="Gift Item">🎁 Gift Item</option>
-          <option value="Party Supplies">🎉 Party Supplies</option>
-          <option value="Flower Decoration">🌸 Flower Decoration</option>
+          <option value="Birthday Decoration">?? Birthday Decoration</option>
+          <option value="Wedding Bag">?? Wedding Bag</option>
+          <option value="Gift Item">?? Gift Item</option>
+          <option value="Party Supplies">?? Party Supplies</option>
+          <option value="Flower Decoration">?? Flower Decoration</option>
         </select>
       </div>
 
       <div class="form-group">
         <label>Product Description</label>
-        <textarea id="productDesc" placeholder="Describe your product — materials, size, colors, what makes it special..."></textarea>
+        <textarea id="productDesc" placeholder="Describe your product � materials, size, colors, what makes it special..."></textarea>
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label>Price (₹) *</label>
+          <label>Price (?) *</label>
           <input type="number" id="productPrice" placeholder="e.g. 350" min="0">
         </div>
         <div class="form-group">
           <label>Stock Status</label>
           <select id="productStock">
-            <option value="In Stock">✅ In Stock</option>
-            <option value="Out of Stock">❌ Out of Stock</option>
+            <option value="In Stock">? In Stock</option>
+            <option value="Out of Stock">? Out of Stock</option>
           </select>
         </div>
       </div>
@@ -692,7 +692,7 @@
   <div class="modal">
     <div class="modal-header">
       <h2 id="viewModalTitle">Product Details</h2>
-      <button class="modal-close" onclick="closeViewModal()">✕</button>
+      <button class="modal-close" onclick="closeViewModal()">?</button>
     </div>
     <div class="modal-body" id="viewModalBody"></div>
     <div class="modal-footer">
@@ -706,7 +706,7 @@
 <div class="toast" id="toast"></div>
 
 <footer>
-  &copy; 2025 <strong>Anand Yogi Fashion Bags</strong> · Birthday Decorations & Wedding Bags
+  &copy; 2025 <strong>Anand Yogi Fashion Bags</strong> � Birthday Decorations & Wedding Bags
 </footer>
 
 <script>
@@ -724,8 +724,8 @@
   }
 
   function catEmoji(cat) {
-    const map = { 'Birthday Decoration':'🎂', 'Wedding Bag':'💍', 'Gift Item':'🎁', 'Party Supplies':'🎉', 'Flower Decoration':'🌸' };
-    return map[cat] || '📦';
+    const map = { 'Birthday Decoration':'??', 'Wedding Bag':'??', 'Gift Item':'??', 'Party Supplies':'??', 'Flower Decoration':'??' };
+    return map[cat] || '??';
   }
 
   function renderProducts() {
@@ -759,15 +759,15 @@
             }
             <span class="card-cat-badge">${p.category || 'Product'}</span>
             <div class="card-actions-overlay" onclick="event.stopPropagation()">
-              <button class="card-icon-btn btn-edit" title="Edit" onclick="openEditModal('${p.id}')">✏️</button>
-              <button class="card-icon-btn btn-delete" title="Delete" onclick="deleteProduct('${p.id}')">🗑️</button>
+              <button class="card-icon-btn btn-edit" title="Edit" onclick="openEditModal('${p.id}')">??</button>
+              <button class="card-icon-btn btn-delete" title="Delete" onclick="deleteProduct('${p.id}')">???</button>
             </div>
           </div>
           <div class="card-body">
             <div class="card-name">${p.name}</div>
             <div class="card-desc">${p.desc || 'No description added.'}</div>
             <div class="card-footer">
-              <div class="card-price"><sup>₹</sup>${Number(p.price).toLocaleString('en-IN')}</div>
+              <div class="card-price"><sup>?</sup>${Number(p.price).toLocaleString('en-IN')}</div>
               <span class="card-stock ${p.stock === 'In Stock' ? 'in-stock' : 'out-stock'}">${p.stock}</span>
             </div>
           </div>
@@ -846,9 +846,9 @@
     const cat = document.getElementById('productCategory').value;
     const price = document.getElementById('productPrice').value;
 
-    if (!name) { showToast('⚠️ Please enter product name', 'error'); return; }
-    if (!cat) { showToast('⚠️ Please select a category', 'error'); return; }
-    if (!price || isNaN(price) || Number(price) < 0) { showToast('⚠️ Please enter a valid price', 'error'); return; }
+    if (!name) { showToast('?? Please enter product name', 'error'); return; }
+    if (!cat) { showToast('?? Please select a category', 'error'); return; }
+    if (!price || isNaN(price) || Number(price) < 0) { showToast('?? Please enter a valid price', 'error'); return; }
 
     const product = {
       id: editingId || uid(),
@@ -864,10 +864,10 @@
     if (editingId) {
       const idx = products.findIndex(p => p.id === editingId);
       products[idx] = product;
-      showToast('✅ Product updated!', 'success');
+      showToast('? Product updated!', 'success');
     } else {
       products.unshift(product);
-      showToast('🎉 Product added!', 'success');
+      showToast('?? Product added!', 'success');
     }
 
     save();
@@ -880,7 +880,7 @@
     products = products.filter(p => p.id !== id);
     save();
     renderProducts();
-    showToast('🗑️ Product deleted', 'success');
+    showToast('??? Product deleted', 'success');
   }
 
   function viewProduct(id) {
@@ -892,11 +892,11 @@
         ${p.image ? `<img src="${p.image}" alt="${p.name}">` : catEmoji(p.category)}
       </div>
       <div class="card-cat-badge" style="display:inline-block;margin-bottom:4px;">${catEmoji(p.category)} ${p.category}</div>
-      <div class="view-price">₹${Number(p.price).toLocaleString('en-IN')}</div>
+      <div class="view-price">?${Number(p.price).toLocaleString('en-IN')}</div>
       <p class="view-desc">${p.desc || 'No description provided.'}</p>
       <div class="view-meta">
         <div class="view-meta-item"><span>Stock</span><strong>${p.stock}</strong></div>
-        <div class="view-meta-item"><span>Last Updated</span><strong>${p.updatedAt || '—'}</strong></div>
+        <div class="view-meta-item"><span>Last Updated</span><strong>${p.updatedAt || '�'}</strong></div>
       </div>
     `;
     document.getElementById('viewEditBtn').onclick = () => { closeViewModal(); openEditModal(id); };
